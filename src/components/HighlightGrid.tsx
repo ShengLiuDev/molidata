@@ -7,6 +7,7 @@ const KPI_COLORS = [
   { bg: "bg-[hsl(var(--kpi-2)/0.08)]", text: "text-[hsl(var(--kpi-2))]", border: "border-[hsl(var(--kpi-2)/0.2)]" },
   { bg: "bg-[hsl(var(--kpi-3)/0.08)]", text: "text-[hsl(var(--kpi-3))]", border: "border-[hsl(var(--kpi-3)/0.2)]" },
   { bg: "bg-[hsl(var(--kpi-4)/0.08)]", text: "text-[hsl(var(--kpi-4))]", border: "border-[hsl(var(--kpi-4)/0.2)]" },
+  { bg: "bg-[hsl(var(--kpi-5)/0.08)]", text: "text-[hsl(var(--kpi-5))]", border: "border-[hsl(var(--kpi-5)/0.2)]" },
 ];
 
 interface HighlightGridProps {
@@ -16,7 +17,7 @@ interface HighlightGridProps {
 
 export function HighlightGrid({ highlights, lang }: HighlightGridProps) {
   return (
-    <div className="kpi-grid grid grid-cols-2 gap-4 sm:grid-cols-4">
+    <div className="kpi-grid grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
       {highlights.map((h, i) => {
         const color = KPI_COLORS[i % KPI_COLORS.length];
         return (

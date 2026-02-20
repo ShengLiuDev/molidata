@@ -73,6 +73,7 @@
     --kpi-2: 217 91% 50%;
     --kpi-3: 142 72% 38%;
     --kpi-4: 38 92% 48%;
+    --kpi-5: 280 68% 50%;
   }
 }
 
@@ -127,8 +128,8 @@
 
   .kpi-grid {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 8pt !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 6pt !important;
   }
 
   @page {

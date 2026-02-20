@@ -55,11 +55,12 @@ Analyze the provided PDF restaurant statement and return ONLY a valid JSON objec
   "insights_es": "Same insights in Spanish"
 }
 
-The highlights array must include exactly these 4 KPIs (in order):
+The highlights array must include exactly these 5 KPIs (in order):
 1. Net Sales
 2. Total Orders
 3. Service Tips
 4. Total Payout Amount
+5. ChowBus Monthly Fee — this is the "Network & Gateway" cost or ChowBus monthly service fee found in the Payout Summary / Fees section. If multiple fee line items exist, sum them into one total. Label it "ChowBus Fee" in English, "ChowBus 月费" in Chinese, "Tarifa ChowBus" in Spanish.
 
 The order_breakdown array is CRITICAL. It must contain one row per order channel found in the statement, plus a final Total row.
 - Look for ALL of these channels and include them if present: Dine In, Carry Out (Take Out), Kiosk, Online Delivery (DoorDash, Uber Eats, Grubhub, etc.), Call In
