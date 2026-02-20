@@ -19,6 +19,9 @@ dist-ssr
 # Lockfiles from other package managers
 bun.lockb
 
+# Supabase CLI temp files
+supabase/.temp/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
