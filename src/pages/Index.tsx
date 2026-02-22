@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Language, StatementData, AppState } from "@/types/statement";
+import { Language, StatementData, AppState, ChatMessage } from "@/types/statement";
 import { t } from "@/lib/i18n";
 import { UploadZone } from "@/components/UploadZone";
 import { FileBar } from "@/components/FileBar";
@@ -16,6 +16,9 @@ export default function Index() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [statementData, setStatementData] = useState<StatementData | null>(null);
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const [pdfBase64, setPdfBase64] = useState<string | null>(null);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [chatLoading, setChatLoading] = useState(false);
 
   const handleFileSelected = useCallback((file: File) => {
     setSelectedFile(file);
@@ -27,6 +30,9 @@ export default function Index() {
     setSelectedFile(null);
     setStatementData(null);
     setErrorMsg("");
+    setPdfBase64(null);
+    setChatMessages([]);
+    setChatLoading(false);
     setAppState("upload");
   }, []);
 
@@ -67,6 +73,7 @@ export default function Index() {
         throw new Error("No data returned from analysis");
       }
 
+      setPdfBase64(base64);
       setStatementData(data.data);
       setAppState("summary");
     } catch (err) {
@@ -75,6 +82,43 @@ export default function Index() {
       setAppState("error");
     }
   }, [selectedFile]);
+
+  const handleChatSend = useCallback(async (text: string) => {
+    if (!pdfBase64) return;
+
+    const userMsg: ChatMessage = { role: "user", content: text };
+    const updatedMessages = [...chatMessages, userMsg];
+    setChatMessages(updatedMessages);
+    setChatLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("chat-statement", {
+        body: {
+          pdfBase64,
+          messages: updatedMessages,
+          lang,
+        },
+      });
+
+      if (error) throw new Error(error.message || "Chat request failed");
+      if (data?.error) throw new Error(data.error);
+
+      const assistantMsg: ChatMessage = {
+        role: "assistant",
+        content: data.reply,
+      };
+      setChatMessages((prev) => [...prev, assistantMsg]);
+    } catch (err) {
+      console.error("Chat error:", err);
+      const assistantMsg: ChatMessage = {
+        role: "assistant",
+        content: t(lang, "chatError"),
+      };
+      setChatMessages((prev) => [...prev, assistantMsg]);
+    } finally {
+      setChatLoading(false);
+    }
+  }, [pdfBase64, chatMessages, lang]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -176,6 +220,9 @@ export default function Index() {
             lang={lang}
             setLang={setLang}
             onReset={handleReset}
+            chatMessages={chatMessages}
+            chatLoading={chatLoading}
+            onChatSend={handleChatSend}
           />
         )}
       </main>

@@ -46,3 +46,8 @@ export interface StatementData {
 }
 
 export type AppState = "upload" | "file-ready" | "loading" | "summary" | "error";
+
+export interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}

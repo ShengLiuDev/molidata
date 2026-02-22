@@ -50,7 +50,7 @@ Analyze the provided PDF restaurant statement and return ONLY a valid JSON objec
       ]
     }
   ],
-  "insights_en": "2-3 sentence plain-language business insight for the restaurant owner in English",
+  "insights_en": "2-4 sentence plain-language business insight for the restaurant owner in English",
   "insights_zh": "Same insights in Mandarin Chinese (简体中文)",
   "insights_es": "Same insights in Spanish"
 }

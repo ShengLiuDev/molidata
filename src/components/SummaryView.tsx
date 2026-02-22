@@ -1,10 +1,11 @@
-import { StatementData, Language } from "@/types/statement";
+import { StatementData, Language, ChatMessage } from "@/types/statement";
 import { t } from "@/lib/i18n";
 import { HighlightGrid } from "./HighlightGrid";
 import { OrderBreakdownTable } from "./OrderBreakdownTable";
 import { SectionTable } from "./SectionTable";
 import { InsightsBox } from "./InsightsBox";
 import { LanguageToggle } from "./LanguageToggle";
+import { ChatPanel } from "./ChatPanel";
 import { Printer, UploadCloud } from "lucide-react";
 
 interface SummaryViewProps {
@@ -12,9 +13,12 @@ interface SummaryViewProps {
   lang: Language;
   setLang: (l: Language) => void;
   onReset: () => void;
+  chatMessages: ChatMessage[];
+  chatLoading: boolean;
+  onChatSend: (text: string) => void;
 }
 
-export function SummaryView({ data, lang, setLang, onReset }: SummaryViewProps) {
+export function SummaryView({ data, lang, setLang, onReset, chatMessages, chatLoading, onChatSend }: SummaryViewProps) {
   const handlePrint = () => window.print();
 
   return (
@@ -71,6 +75,13 @@ export function SummaryView({ data, lang, setLang, onReset }: SummaryViewProps) 
       <div className="hidden print:block text-center text-xs text-muted-foreground border-t border-border pt-3 mt-4">
         {t(lang, "generatedBy")}
       </div>
+
+      <ChatPanel
+        lang={lang}
+        messages={chatMessages}
+        isLoading={chatLoading}
+        onSend={onChatSend}
+      />
     </div>
   );
 }

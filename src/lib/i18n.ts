@@ -30,6 +30,12 @@ export const UI_TEXT = {
     // Privacy
     privacyNotice: "Your privacy is protected",
     privacyDetail: "Your PDF is sent directly to Claude AI for analysis and is never stored on our servers. No data, no cookies, no history — everything is erased the moment you leave or refresh this page.",
+    // Chat
+    chatTitle: "Ask about your statement",
+    chatPlaceholder: "Ask a question...",
+    chatSend: "Send",
+    chatWelcome: "I can answer any questions about your uploaded statement. Try asking about specific line items, trends, or comparisons.",
+    chatError: "Something went wrong. Please try again.",
   },
   zh: {
     appTitle: "ChowBus 月报分析器",
@@ -60,6 +66,12 @@ export const UI_TEXT = {
     // Privacy
     privacyNotice: "您的隐私受到保护",
     privacyDetail: "您的PDF直接发送给Claude AI进行分析，从不存储在我们的服务器上。无数据、无Cookie、无历史记录——您离开或刷新页面后，所有内容立即清除。",
+    // Chat
+    chatTitle: "询问您的报表",
+    chatPlaceholder: "提问...",
+    chatSend: "发送",
+    chatWelcome: "我可以回答关于您上传报表的任何问题。试试询问具体项目、趋势或对比分析。",
+    chatError: "出了点问题，请重试。",
   },
   es: {
     appTitle: "Analizador de Estados ChowBus",
@@ -90,6 +102,12 @@ export const UI_TEXT = {
     // Privacy
     privacyNotice: "Tu privacidad está protegida",
     privacyDetail: "Tu PDF se envía directamente a Claude AI para su análisis y nunca se almacena en nuestros servidores. Sin datos, sin cookies, sin historial: todo se borra en el momento en que abandonas o recargas esta página.",
+    // Chat
+    chatTitle: "Pregunta sobre tu estado",
+    chatPlaceholder: "Haz una pregunta...",
+    chatSend: "Enviar",
+    chatWelcome: "Puedo responder cualquier pregunta sobre tu estado de cuenta. Prueba preguntar sobre partidas específicas, tendencias o comparaciones.",
+    chatError: "Algo salió mal. Por favor, inténtalo de nuevo.",
   },
 } as const;
 
