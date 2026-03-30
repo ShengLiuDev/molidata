@@ -6,7 +6,7 @@ import { FileBar } from "@/components/FileBar";
 import { LoadingView } from "@/components/LoadingView";
 import { SummaryView } from "@/components/SummaryView";
 import { LanguageToggle } from "@/components/LanguageToggle";
-import { AlertCircle, RefreshCw } from "lucide-react";
+import { AlertCircle, Info, RefreshCw } from "lucide-react";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -145,6 +145,45 @@ export default function Index() {
           )}
         </div>
       </header>
+
+      {/* Demo Banner */}
+      <section className="no-print mx-auto max-w-5xl px-4 pt-6">
+        <div className="rounded-xl border border-amber-300/60 bg-amber-50/80 dark:border-amber-500/30 dark:bg-amber-950/20 p-5 space-y-4">
+          <div className="flex items-start gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400">
+              <Info className="h-5 w-5" />
+            </div>
+            <div className="space-y-1">
+              <h2 className="text-base font-bold text-amber-900 dark:text-amber-200">
+                Demo Version
+              </h2>
+              <p className="text-sm text-amber-800/90 dark:text-amber-300/80">
+                You are currently using the <strong>free demo</strong> of this application.
+                For the full version and details regarding available plans, please contact{" "}
+                <a
+                  href="mailto:sheng.liu.0841@gmail.com"
+                  className="font-semibold underline underline-offset-2 hover:text-amber-950 dark:hover:text-amber-100 transition-colors"
+                >
+                  sheng.liu.0841@gmail.com
+                </a>.
+              </p>
+            </div>
+          </div>
+
+          <hr className="border-amber-200/60 dark:border-amber-700/40" />
+
+          <div className="text-xs text-amber-700/90 dark:text-amber-400/70 space-y-1.5 pl-[52px]">
+            <p>
+              Abuse of the free version bot is strictly prohibited. All usage is monitored and
+              subject to rate limits.
+            </p>
+            <p>
+              All legal authority and rights are reserved by{" "}
+              <strong className="font-semibold">Token Ramen of 434 LLC</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Main content */}
       <main className="mx-auto max-w-5xl px-4 py-8 print:px-0 print:py-0">
